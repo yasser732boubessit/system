@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HayApplication<hay>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.arjuncodes.hay.HayApplication",
+            "projectName": "hay",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
