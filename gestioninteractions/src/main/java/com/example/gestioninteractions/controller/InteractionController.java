@@ -1,36 +1,21 @@
 package com.example.gestioninteractions.controller;
 
-import com.example.gestioninteractions.model.Interaction;
 import com.example.gestioninteractions.service.InteractionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/interactions")
 public class InteractionController {
+    
+    private final InteractionService interactionService;
 
-    @Autowired
-    private InteractionService interactionService;
-
-    @GetMapping
-    public List<Interaction> getAllInteractions() {
-        return interactionService.getAllInteractions();
+    public InteractionController(InteractionService interactionService) {
+        this.interactionService = interactionService;
     }
 
-    @PostMapping
-    public Interaction createInteraction(@RequestBody Interaction interaction) {
-        return interactionService.saveInteraction(interaction);
-    }
-
-    @GetMapping("/user/{userId}")
-    public List<Interaction> getInteractionsByUser(@PathVariable String userId) {
-        return interactionService.getInteractionsByUser(userId);
-    }
-
-    @GetMapping("/item/{itemId}")
-    public List<Interaction> getInteractionsByItem(@PathVariable String itemId) {
-        return interactionService.getInteractionsByItem(itemId);
+    @PostMapping("/send")
+    public String sendMessage(@RequestParam String message) {
+        interactionService.sendMessage(message);
+        return "Message envoyé à ReplyService : " + message;
     }
 }
