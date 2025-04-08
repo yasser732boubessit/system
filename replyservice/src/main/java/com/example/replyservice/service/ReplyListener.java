@@ -1,13 +1,16 @@
 package com.example.replyservice.service;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import com.example.replyservice.model.Item;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ReplyListener {
 
-    @RabbitListener(queues = "replyQueue")
-    public void receiveMessage(String message) {
-        System.out.println("Réponse reçue de GestionInteractionsService : " + message);
+    @KafkaListener(topics = "items-topic", groupId = "reply-service-group", containerFactory = "kafkaListenerContainerFactory")
+    public void listen(Item item) {
+        System.out.println(" Received item via Kafka:");
+    //    System.out.println(" Item ID: " + item.getItemID());
+        System.out.println(" Categories: " + item.getCategories());
     }
 }
