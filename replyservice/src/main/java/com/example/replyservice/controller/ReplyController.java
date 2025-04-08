@@ -1,7 +1,6 @@
 package com.example.replyservice.controller;
 
 import com.example.replyservice.model.Item;
-import com.example.replyservice.model.Reply;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
